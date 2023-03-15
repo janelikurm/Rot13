@@ -1,15 +1,20 @@
 package org.example;
 
+import java.util.Scanner;
+
 public class ROT13 {
     public static void main(String[] args) {
         ROT13 rot13 = new ROT13();
 
-        String s = "Tere";
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Please insert your input which you want to encrypt or decrypt");
+        String userInput = scanner.next();
 
-        s = rot13.rot13(s);
-        System.out.println(s);
-        s = rot13.rot13(s);
-        System.out.println(s);
+        userInput = rot13.rot13(userInput);
+        System.out.println(userInput);
+        userInput = rot13.rot13(userInput);
+        System.out.println(userInput);
+
     }
 
     public String rot13(String s) {
