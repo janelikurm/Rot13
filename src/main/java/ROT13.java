@@ -1,4 +1,5 @@
 import java.util.List;
+import java.util.Random;
 import java.util.Scanner;
 
 public class ROT13 {
@@ -16,7 +17,6 @@ public class ROT13 {
         }
         System.out.println("Thank you for using our amazing encrypting and decrypting device! :)");
     }
-
 
     public String rot13(String userInput) {
         StringBuilder result = new StringBuilder();
@@ -37,12 +37,11 @@ public class ROT13 {
         List<Character> alphabetAsChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz".chars().mapToObj(c -> (char) c).toList();
 
         List<Character> result = inputAsList.stream().map(c -> alphabetAsChars.contains(c) ?
-                                                                c >= 'N' && c <= 'Z' || c >= 'n' ?
-                                                                alphabetAsChars.get(alphabetAsChars.indexOf(c) - 13) :
-                                                                alphabetAsChars.get(alphabetAsChars.indexOf(c) + 13) :
-                                                                c)
-                                                                .toList();
-
+                        c >= 'N' && c <= 'Z' || c >= 'n' ?
+                                alphabetAsChars.get(alphabetAsChars.indexOf(c) - 13) :
+                                alphabetAsChars.get(alphabetAsChars.indexOf(c) + 13) :
+                        c)
+                .toList();
 
         StringBuilder builder = new StringBuilder(result.size());
         for (Character ch : result) {
@@ -51,6 +50,3 @@ public class ROT13 {
         return builder.toString();
     }
 }
-
-
-

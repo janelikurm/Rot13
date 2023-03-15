@@ -1,4 +1,9 @@
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
+
+import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -61,5 +66,29 @@ class ROT13Test {
     @Test
     void rot13_specialCharacters2() {
         assertEquals("*1+-/", rot13.rot13v2("*1+-/"));
+    }
+    @Test
+    void rot13_randomString() {
+
+        String randomString = createRandomString();
+        assertEquals(randomString, rot13.rot13v2(rot13.rot13v2(randomString)));
+    }
+
+    @ParameterizedTest
+    @CsvSource({"zzz,mmm", "mhmh,zuzu"})
+    public void rot13(String input, String expectedResult) {
+        assertEquals(expectedResult,rot13.rot13v2(input));
+    }
+
+    private String createRandomString () {
+        Random random = new Random();
+        int randomInt = random.nextInt(100);
+
+        char[] chars = new char[randomInt];
+        for (int i = 0; i < randomInt; i++) {
+            int randomChar = random.nextInt(32,128);
+            chars[i] = (char)randomChar;
+        }
+        return String.valueOf(chars);
     }
 }
