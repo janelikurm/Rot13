@@ -49,4 +49,24 @@ public class ROT13 {
         }
         return builder.toString();
     }
+
+    public String rot13v3(String input,int rotations) {
+        int rotationReminder = rotations % 26;
+        List<Character> inputAsList = input.chars().mapToObj(c -> (char) c).toList();
+        List<Character> alphabetAsChars = "abcdefghijklmnopqrstuvwxyz".chars().mapToObj(c -> (char) c).toList();
+
+        List<Character> result = inputAsList.stream().map(c -> alphabetAsChars.contains(Character.toLowerCase(c)) ?
+                                                                Character.isLowerCase(c) ?
+                                                               alphabetAsChars.get((alphabetAsChars.indexOf(c) + rotationReminder) % 26) :
+                                                                Character.toUpperCase(alphabetAsChars.get((alphabetAsChars.indexOf(c) + rotationReminder) % 26)) :
+                                                                c)
+                                                                .toList();
+
+        StringBuilder builder = new StringBuilder(result.size());
+        for (Character ch : result) {
+            builder.append(ch);
+        }
+        return builder.toString();
+    }
+
 }

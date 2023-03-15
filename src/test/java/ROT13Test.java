@@ -1,7 +1,6 @@
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.Random;
 
@@ -66,6 +65,34 @@ class ROT13Test {
     @Test
     void rot13_specialCharacters2() {
         assertEquals("*1+-/", rot13.rot13v2("*1+-/"));
+    }
+    @Test
+    void rot13_Tere3() {
+        assertEquals("Grer", rot13.rot13v3("Tere",13));
+    }
+    @Test
+    void rot13_Grer3() {
+        assertEquals("Tere", rot13.rot13v3("Grer",3));
+    }
+    @Test
+    void rot13_empty3() {
+        assertEquals("", rot13.rot13v3("",23));
+    }
+    @Test
+    void rot13_n3() {
+        assertEquals("aaa", rot13.rot13v3("nnn",21));
+    }
+    @Test
+    void rot13_m3() {
+        assertEquals("zzz", rot13.rot13v3("mmm",0));
+    }
+    @Test
+    void rot13_zuzu3() {
+        assertEquals("mhmh", rot13.rot13v3("zuzu",26));
+    }
+    @Test
+    void rot13_specialCharacters3() {
+        assertEquals("*1+-/", rot13.rot13v3("*1+-/",14));
     }
     @Test
     void rot13_randomString() {
