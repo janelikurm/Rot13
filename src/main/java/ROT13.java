@@ -1,5 +1,3 @@
-package org.example;
-
 import java.util.Scanner;
 
 public class ROT13 {
@@ -8,12 +6,15 @@ public class ROT13 {
 
         Scanner scanner = new Scanner(System.in);
         System.out.println("Please insert your input which you want to encrypt or decrypt");
-        String userInput = scanner.next();
-
+        String userInput = scanner.nextLine();
         userInput = rot13.rot13(userInput);
         System.out.println(userInput);
-        userInput = rot13.rot13(userInput);
-        System.out.println(userInput);
+        System.out.println("Would you like do reverse this action? Press Y for yes");
+        if (scanner.nextLine().equalsIgnoreCase("Y")) {
+            userInput = rot13.rot13(userInput);
+            System.out.println(userInput);
+        }
+        System.out.println("Thank you for using our amazing encrypting and decrypting device! :)");
 
     }
 
