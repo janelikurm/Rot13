@@ -1,3 +1,4 @@
+import java.util.List;
 import java.util.Scanner;
 
 public class ROT13 {
@@ -31,6 +32,10 @@ public class ROT13 {
             result.append(c);
         }
         return result.toString();
+    }
+
+    public String rot13v2 (String input) {
+    return "new String";
     }
 }
 

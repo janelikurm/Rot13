@@ -18,4 +18,16 @@ class ROT13Test {
     void rot13_empty() {
         assertEquals("", rot13.rot13(""));
     }
+    @Test
+    void rot13_n() {
+        assertEquals("aaa", rot13.rot13("nnn"));
+    }
+    @Test
+    void rot13_m() {
+        assertEquals("zzz", rot13.rot13("mmm"));
+    }
+    @Test
+    void rot13_zuzu() {
+        assertEquals("mhmh", rot13.rot13("zuzu"));
+    }
 }
