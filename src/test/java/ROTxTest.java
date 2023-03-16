@@ -104,6 +104,18 @@ class ROTxTest {
         assertEquals(randomString, ROTx.rot13v2(ROTx.rot13v2(randomString)));
     }
 
+    @Test
+    void rotX_randomInput() {
+        int numberOfRuns = 100;
+        while (numberOfRuns > 0) {
+            String randomString = createRandomString();
+            int randomRotation = new Random().nextInt(-500, 500);
+            System.out.println(randomRotation + "   " + randomString);
+            assertEquals(randomString, ROTx.rotX(ROTx.rotX(randomString, randomRotation), -randomRotation));
+            numberOfRuns--;
+        }
+    }
+
     @ParameterizedTest
     @CsvSource({"zzz,mmm", "mhmh,zuzu"})
     public void rot13(String input, String expectedResult) {
