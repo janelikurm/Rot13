@@ -1,8 +1,11 @@
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.Random;
+import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -113,6 +116,13 @@ class ROTxTest {
         assertEquals(expectedResult, ROTx.rotX(input, rotations));
     }
 
+    @ParameterizedTest
+    @MethodSource ("provideDataForRotX")
+    void rotX_MS_test (String input, String expectedResult, int rotations) {
+        assertEquals(expectedResult, ROTx.rotX(input, rotations));
+    }
+
+
     private String createRandomString () {
         Random random = new Random();
         int randomInt = random.nextInt(100);
@@ -123,5 +133,14 @@ class ROTxTest {
             chars[i] = (char)randomChar;
         }
         return String.valueOf(chars);
+    }
+
+    private static Stream<Arguments> provideDataForRotX() {
+        return Stream.of(
+                Arguments.of("aAaa", "eEee", 4),
+                Arguments.of("meil on päris lahe päev:codeborne+1234 ?ruulib", "iaeh kj läneo hwda läar:ykzaxknja+1234 ?nqqhex", 22),
+                Arguments.of("fgdgdfg58856fdgdfgdfgdvcHEJGascfU", "opmpmop58856ompmopmopmelQNSPjbloD", -17),
+                Arguments.of("OkmsMa=", "OkmsMa=", 0)
+        );
     }
 }
