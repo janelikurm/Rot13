@@ -34,21 +34,7 @@ public class ROTx {
     }
 
     public String rot13v2(String input) {
-        List<Character> inputAsList = input.chars().mapToObj(c -> (char) c).toList();
-        List<Character> alphabetAsChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz".chars().mapToObj(c -> (char) c).toList();
-
-        List<Character> result = inputAsList.stream().map(c -> alphabetAsChars.contains(c) ?
-                        c >= 'N' && c <= 'Z' || c >= 'n' ?
-                                alphabetAsChars.get(alphabetAsChars.indexOf(c) - 13) :
-                                alphabetAsChars.get(alphabetAsChars.indexOf(c) + 13) :
-                        c)
-                .toList();
-
-        StringBuilder builder = new StringBuilder(result.size());
-        for (Character ch : result) {
-            builder.append(ch);
-        }
-        return builder.toString();
+     return rotX(input, 13);
     }
 
     public String rotX(String input, int rotations) {
