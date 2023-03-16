@@ -11,11 +11,11 @@ public class ROTx {
         int userRotationInput = scanner.nextInt();
         userStringInput = rotX.rotX(userStringInput, userRotationInput);
         System.out.println(userStringInput);
-//        System.out.println("Would you like do reverse this action? Press Y for yes");
-//        if (scanner.nextLine().equalsIgnoreCase("Y")) {
-//            userStringInput = rotX.rot13(userStringInput);
-//            System.out.println(userStringInput);
-//        }
+        System.out.println("Would you like do reverse this action? Press Y for yes");
+        if (scanner.next().equalsIgnoreCase("Y")) {
+            userStringInput = rotX.rotX(userStringInput,-userRotationInput);
+            System.out.println(userStringInput);
+        }
         System.out.println("Thank you for using our amazing encrypting and decrypting device! :)");
     }
 
@@ -38,14 +38,14 @@ public class ROTx {
     }
 
     public String rotX(String input, int rotations) {
-        int rotationReminder = rotations % 26;
         List<Character> inputAsList = input.chars().mapToObj(c -> (char) c).toList();
         List<Character> alphabetAsChars = "abcdefghijklmnopqrstuvwxyz".chars().mapToObj(c -> (char) c).toList();
+        int rotationReminder = rotations < 0 ? alphabetAsChars.size() + rotations % alphabetAsChars.size() : rotations % alphabetAsChars.size();
 
         List<Character> result = inputAsList.stream().map(c -> alphabetAsChars.contains(Character.toLowerCase(c)) ?
                                                                 Character.isLowerCase(c) ?
-                                                               alphabetAsChars.get((alphabetAsChars.indexOf(c) + rotationReminder) % 26) :
-                                                                Character.toUpperCase(alphabetAsChars.get((alphabetAsChars.indexOf(Character.toLowerCase(c)) + rotationReminder) % 26)) :
+                                                               alphabetAsChars.get((alphabetAsChars.indexOf(c) + rotationReminder) % alphabetAsChars.size()) :
+                                                                Character.toUpperCase(alphabetAsChars.get((alphabetAsChars.indexOf(Character.toLowerCase(c)) + rotationReminder) % alphabetAsChars.size())) :
                                                                 c)
                                                                 .toList();
 
