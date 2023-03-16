@@ -6,105 +6,105 @@ import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class ROT13Test {
+class ROTxTest {
 
-    ROT13 rot13 = new ROT13();
+    ROTx ROTx = new ROTx();
 
     @Test
     void rot13_Tere() {
-        assertEquals("Grer", rot13.rot13("Tere"));
+        assertEquals("Grer", ROTx.rot13("Tere"));
     }
     @Test
     void rot13_Grer() {
-        assertEquals("Tere", rot13.rot13("Grer"));
+        assertEquals("Tere", ROTx.rot13("Grer"));
     }
     @Test
     void rot13_empty() {
-        assertEquals("", rot13.rot13(""));
+        assertEquals("", ROTx.rot13(""));
     }
     @Test
     void rot13_n() {
-        assertEquals("aaa", rot13.rot13("nnn"));
+        assertEquals("aaa", ROTx.rot13("nnn"));
     }
     @Test
     void rot13_m() {
-        assertEquals("zzz", rot13.rot13("mmm"));
+        assertEquals("zzz", ROTx.rot13("mmm"));
     }
     @Test
     void rot13_zuzu() {
-        assertEquals("mhmh", rot13.rot13("zuzu"));
+        assertEquals("mhmh", ROTx.rot13("zuzu"));
     }
     @Test
     void rot13_specialCharacters() {
-        assertEquals("*1+-/", rot13.rot13("*1+-/"));
+        assertEquals("*1+-/", ROTx.rot13("*1+-/"));
     }
     @Test
     void rot13_Tere2() {
-        assertEquals("Grer", rot13.rot13v2("Tere"));
+        assertEquals("Grer", ROTx.rot13v2("Tere"));
     }
     @Test
     void rot13_Grer2() {
-        assertEquals("Tere", rot13.rot13v2("Grer"));
+        assertEquals("Tere", ROTx.rot13v2("Grer"));
     }
     @Test
     void rot13_empty2() {
-        assertEquals("", rot13.rot13v2(""));
+        assertEquals("", ROTx.rot13v2(""));
     }
     @Test
     void rot13_n2() {
-        assertEquals("aaa", rot13.rot13v2("nnn"));
+        assertEquals("aaa", ROTx.rot13v2("nnn"));
     }
     @Test
     void rot13_m2() {
-        assertEquals("zzz", rot13.rot13v2("mmm"));
+        assertEquals("zzz", ROTx.rot13v2("mmm"));
     }
     @Test
     void rot13_zuzu2() {
-        assertEquals("mhmh", rot13.rot13v2("zuzu"));
+        assertEquals("mhmh", ROTx.rot13v2("zuzu"));
     }
     @Test
     void rot13_specialCharacters2() {
-        assertEquals("*1+-/", rot13.rot13v2("*1+-/"));
+        assertEquals("*1+-/", ROTx.rot13v2("*1+-/"));
     }
     @Test
     void rot13_Tere3() {
-        assertEquals("Grer", rot13.rot13v3("Tere",13));
+        assertEquals("Grer", ROTx.rotX("Tere",13));
     }
     @Test
-    void rot13_Grer3() {
-        assertEquals("Tere", rot13.rot13v3("Grer",3));
+    void rotX_Grer_3() {
+        assertEquals("Juhu", ROTx.rotX("Grer",3));
     }
     @Test
-    void rot13_empty3() {
-        assertEquals("", rot13.rot13v3("",23));
+    void rotX_empty_23() {
+        assertEquals("", ROTx.rotX("",23));
     }
     @Test
-    void rot13_n3() {
-        assertEquals("aaa", rot13.rot13v3("nnn",21));
+    void rotX_nnn_21() {
+        assertEquals("iii", ROTx.rotX("nnn",21));
     }
     @Test
-    void rot13_m3() {
-        assertEquals("zzz", rot13.rot13v3("mmm",0));
+    void rotX_mmm_0() {
+        assertEquals("mmm", ROTx.rotX("mmm",0));
     }
     @Test
-    void rot13_zuzu3() {
-        assertEquals("mhmh", rot13.rot13v3("zuzu",26));
+    void rotX_zuzu_26() {
+        assertEquals("zuzu", ROTx.rotX("zuzu",26));
     }
     @Test
-    void rot13_specialCharacters3() {
-        assertEquals("*1+-/", rot13.rot13v3("*1+-/",14));
+    void rotX_symbols_14() {
+        assertEquals("*1+-/", ROTx.rotX("*1+-/",14));
     }
     @Test
     void rot13_randomString() {
 
         String randomString = createRandomString();
-        assertEquals(randomString, rot13.rot13v2(rot13.rot13v2(randomString)));
+        assertEquals(randomString, ROTx.rot13v2(ROTx.rot13v2(randomString)));
     }
 
     @ParameterizedTest
     @CsvSource({"zzz,mmm", "mhmh,zuzu"})
     public void rot13(String input, String expectedResult) {
-        assertEquals(expectedResult,rot13.rot13v2(input));
+        assertEquals(expectedResult, ROTx.rot13v2(input));
     }
 
     private String createRandomString () {
