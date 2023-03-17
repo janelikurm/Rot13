@@ -36,11 +36,11 @@ public class RotEncoder {
         if (!alphabet.contains(toLowerCase(c))) {
             return c;
         }
-        return isLowerCase(c) ? encodeLatinChar(rotationReminder, c)
-                : toUpperCase(encodeLatinChar(rotationReminder, toLowerCase(c)));
+        return isLowerCase(c) ? encodeLatinChar(c, rotationReminder)
+                : toUpperCase(encodeLatinChar(toLowerCase(c), rotationReminder));
     }
 
-    private Character encodeLatinChar(int rotationReminder, Character c) {
+    private Character encodeLatinChar(Character c, int rotationReminder) {
         return alphabet.get((alphabet.indexOf(c) + rotationReminder) % alphabet.size());
     }
 
