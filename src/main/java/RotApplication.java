@@ -33,3 +33,4 @@ public class RotApplication {
                 .equalsIgnoreCase("Y");
     }
 }
+

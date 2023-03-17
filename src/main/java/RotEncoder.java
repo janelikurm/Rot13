@@ -25,7 +25,7 @@ public class RotEncoder {
 
     public String encode(String input, int rotations) {
         List<Character> inputAsList = toCharList(input);
-        int rotationReminder = rotations < 0 ? alphabet.size() + rotations % alphabet.size() : rotations % alphabet.size();
+        int rotationReminder = (alphabet.size() + rotations % alphabet.size()) % alphabet.size();
 
         return charsToString(inputAsList.stream()
                 .map(c -> encodeChar(rotationReminder, c))
